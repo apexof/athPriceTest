@@ -1,9 +1,9 @@
-import { useGetCurrency } from '@/hooks/useGetCoin';
-import { calcFromAth } from '@/utils/calcAth/calcFromAth/calcFromAth';
-import React, { FC } from 'react';
-import { styled } from 'styled-components';
-import { NumericFormat } from 'react-number-format';
-import { calcToAth } from '@/utils/calcAth/calcToAth/calcToAth';
+import { useGetCurrency } from "@/hooks/useGetCoin";
+import { calcFromAth } from "@/utils/calcAth/calcFromAth/calcFromAth";
+import React, { FC } from "react";
+import { styled } from "styled-components";
+import { NumericFormat } from "react-number-format";
+import { calcToAth } from "@/utils/calcAth/calcToAth/calcToAth";
 
 const Container = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ interface Props {
 export const AthPrice: FC<Props> = (props) => {
   const { currencyName } = props;
   const { data, error, isLoading } = useGetCurrency(currencyName);
- 
+
   if (isLoading) {
     return (
       <Container>
@@ -58,25 +58,47 @@ export const AthPrice: FC<Props> = (props) => {
         <PriceContainer>
           <Label>Current price:</Label>
           <Price>
-            <NumericFormat thousandSeparator=',' value={data.price.USD} displayType='text' decimalScale={2} />
+            <NumericFormat
+              thousandSeparator=","
+              value={data.price.USD}
+              displayType="text"
+              decimalScale={2}
+            />
           </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>ATH:</Label>
           <Price>
-            <NumericFormat thousandSeparator=',' value={data.athPrice.USD} displayType='text' decimalScale={2} />
+            <NumericFormat
+              thousandSeparator=","
+              value={data.athPrice.USD}
+              displayType="text"
+              decimalScale={2}
+            />
           </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>From ATH:</Label>
           <Price>
-            <NumericFormat suffix='%' thousandSeparator=',' value={calcFromAth(data.athPrice.USD, data.price.USD)} displayType='text' decimalScale={2} />
+            <NumericFormat
+              suffix="%"
+              thousandSeparator=","
+              value={calcFromAth(data.athPrice.USD, data.price.USD)}
+              displayType="text"
+              decimalScale={2}
+            />
           </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>To ATH:</Label>
           <Price>
-            <NumericFormat suffix='%' thousandSeparator=',' value={calcToAth(data.athPrice.USD, data.price.USD)} displayType='text' decimalScale={2} />
+            <NumericFormat
+              suffix="%"
+              thousandSeparator=","
+              value={calcToAth(data.athPrice.USD, data.price.USD)}
+              displayType="text"
+              decimalScale={2}
+            />
           </Price>
         </PriceContainer>
       </Container>
@@ -85,7 +107,7 @@ export const AthPrice: FC<Props> = (props) => {
 
   return (
     <Container>
-      <ErrorMessage>Error: {error?.message || 'unknown error'}</ErrorMessage>
+      <ErrorMessage>Error: {error?.message || "unknown error"}</ErrorMessage>
     </Container>
   );
 };

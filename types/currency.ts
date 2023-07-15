@@ -2,9 +2,9 @@ export interface Currency {
   name: string;
   symbol: string;
   athPrice: {
-    USD: string;
+    USD: number;
   },
   price: {
-    USD: string;
+    USD: number;
   },
 }

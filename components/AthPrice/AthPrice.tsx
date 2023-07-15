@@ -1,6 +1,9 @@
 import { useGetCurrency } from '@/hooks/useGetCoin';
+import { calcFromAth } from '@/utils/calcAth/calcFromAth/calcFromAth';
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
+import NumberFormat from 'react-number-format';
+import { calcToAth } from '@/utils/calcAth/calcToAth/calcToAth';
 
 const Container = styled.div`
   display: flex;
@@ -40,7 +43,7 @@ interface Props {
 export const AthPrice: FC<Props> = (props) => {
   const { currencyName } = props;
   const { data, error, isLoading } = useGetCurrency(currencyName);
-
+console.log('data',data );
   if (isLoading) {
     return (
       <Container>
@@ -62,11 +65,11 @@ export const AthPrice: FC<Props> = (props) => {
         </PriceContainer>
         <PriceContainer>
           <Label>From ATH:</Label>
-          <Price>{data.price.USD}</Price>
+          <Price>{calcFromAth(data.athPrice.USD, data.price.USD)}%</Price>
         </PriceContainer>
         <PriceContainer>
           <Label>To ATH:</Label>
-          <Price>{data.price.USD}</Price>
+          <Price>{calcToAth(data.athPrice.USD, data.price.USD)}%</Price>
         </PriceContainer>
       </Container>
     );

@@ -2,7 +2,7 @@ import { useGetCurrency } from '@/hooks/useGetCoin';
 import { calcFromAth } from '@/utils/calcAth/calcFromAth/calcFromAth';
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import { calcToAth } from '@/utils/calcAth/calcToAth/calcToAth';
 
 const Container = styled.div`
@@ -43,7 +43,7 @@ interface Props {
 export const AthPrice: FC<Props> = (props) => {
   const { currencyName } = props;
   const { data, error, isLoading } = useGetCurrency(currencyName);
-console.log('data',data );
+ 
   if (isLoading) {
     return (
       <Container>
@@ -57,19 +57,27 @@ console.log('data',data );
       <Container>
         <PriceContainer>
           <Label>Current price:</Label>
-          <Price>{data.price.USD}</Price>
+          <Price>
+            <NumericFormat thousandSeparator=',' value={data.price.USD} displayType='text' decimalScale={2} />
+          </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>ATH:</Label>
-          <Price>{data.athPrice.USD}</Price>
+          <Price>
+            <NumericFormat thousandSeparator=',' value={data.athPrice.USD} displayType='text' decimalScale={2} />
+          </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>From ATH:</Label>
-          <Price>{calcFromAth(data.athPrice.USD, data.price.USD)}%</Price>
+          <Price>
+            <NumericFormat suffix='%' thousandSeparator=',' value={calcFromAth(data.athPrice.USD, data.price.USD)} displayType='text' decimalScale={2} />
+          </Price>
         </PriceContainer>
         <PriceContainer>
           <Label>To ATH:</Label>
-          <Price>{calcToAth(data.athPrice.USD, data.price.USD)}%</Price>
+          <Price>
+            <NumericFormat suffix='%' thousandSeparator=',' value={calcToAth(data.athPrice.USD, data.price.USD)} displayType='text' decimalScale={2} />
+          </Price>
         </PriceContainer>
       </Container>
     );

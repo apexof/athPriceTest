@@ -6,6 +6,8 @@ export default function Home() {
     <>
       <Head>
         <title>Crypto Rank Test Task</title>
+        <meta name="description" content="Crypto Rank Test Task" />
+        <meta name="keywords" content="crypto" />
       </Head>
       <main>
         <AthPrice currencyName="bitcoin" />

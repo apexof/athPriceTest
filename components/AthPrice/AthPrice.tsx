@@ -1,4 +1,4 @@
-import { useGetCurrency } from "@/hooks/useGetCoin";
+import { useGetCoin } from "@/hooks/useGetCoin";
 import { calcFromAth } from "@/utils/calcAth/calcFromAth/calcFromAth";
 import React, { FC } from "react";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ interface Props {
 
 export const AthPrice: FC<Props> = (props) => {
   const { currencyName } = props;
-  const { data, error, isLoading } = useGetCurrency(currencyName);
+  const { data, error, isLoading } = useGetCoin(currencyName);
 
   if (isLoading) {
     return (

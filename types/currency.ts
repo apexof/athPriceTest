@@ -1,4 +1,4 @@
-export interface Currency {
+export interface Coin {
   name: string;
   symbol: string;
   athPrice: {

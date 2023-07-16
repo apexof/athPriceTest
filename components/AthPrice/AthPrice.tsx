@@ -55,6 +55,7 @@ export const AthPrice: FC<Props> = (props) => {
   if (data) {
     return (
       <Container>
+        <h1>{currencyName}</h1>
         <PriceContainer>
           <Label>Current price:</Label>
           <Price>

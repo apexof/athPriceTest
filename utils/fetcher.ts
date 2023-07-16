@@ -4,7 +4,7 @@ export const fetcher = async (url: string) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        API_KEY: process.env.NEXT_PUBLIC_CRYPTO_RANK_API_KEY,
+        api_key: process.env.NEXT_PUBLIC_CRYPTO_RANK_API_KEY,
       },
     });
     return response.data;

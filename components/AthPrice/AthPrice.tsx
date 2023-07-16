@@ -1,7 +1,7 @@
 import { useGetCurrency } from "@/hooks/useGetCoin";
 import { calcFromAth } from "@/utils/calcAth/calcFromAth/calcFromAth";
 import React, { FC } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { NumericFormat } from "react-number-format";
 import { calcToAth } from "@/utils/calcAth/calcToAth/calcToAth";
 

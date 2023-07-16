@@ -6,7 +6,7 @@ export const calcToAth = (ath: number, currentPrice: number): number => {
       "Invalid currentPrice Value Received from Backend in",
       new Error().stack
     );
-    return 1;
+    return 0;
   }
   if (currentPrice > ath) {
     console.error(

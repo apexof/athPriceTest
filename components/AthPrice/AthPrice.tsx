@@ -63,6 +63,7 @@ export const AthPrice: FC<Props> = (props) => {
               value={data.price.USD}
               displayType="text"
               decimalScale={2}
+              prefix="$ "
             />
           </Price>
         </PriceContainer>
@@ -74,6 +75,7 @@ export const AthPrice: FC<Props> = (props) => {
               value={data.athPrice.USD}
               displayType="text"
               decimalScale={2}
+              prefix="$ "
             />
           </Price>
         </PriceContainer>

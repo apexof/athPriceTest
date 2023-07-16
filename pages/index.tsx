@@ -1,4 +1,4 @@
-import { AthPrice } from "@/components/AthPrice/AthPrice";
+import { AthPrice } from "@/components/AthPrice";
 import Head from "next/head";
 
 export default function Home() {

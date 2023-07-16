@@ -1,6 +1,17 @@
 import { calcToAth } from "./calcToAth";
 
 describe("calculatePercentageDrop", () => {
+  let consoleError: typeof console.error;
+
+  beforeAll(() => {
+    consoleError = console.error;
+    console.error = jest.fn();
+  });
+
+  afterAll(() => {
+    console.error = consoleError;
+  });
+
   it("should correctly calculate the percentage drop", () => {
     const ath = 50;
     const currentPrice = 10;
@@ -19,7 +30,6 @@ describe("calculatePercentageDrop", () => {
 
     expect(toAth).toBe(expectedToAth);
   });
-
   it("should return 0 when currentPrice is 0", () => {
     const ath = 50;
     const currentPrice = 0;
@@ -29,7 +39,14 @@ describe("calculatePercentageDrop", () => {
 
     expect(toAth).toBe(expectedToAth);
   });
+  it("should call console.error when currentPrice is 0", () => {
+    const ath = 50;
+    const currentPrice = 0;
 
+    calcToAth(ath, currentPrice);
+
+    expect(console.error).toHaveBeenCalled();
+  });
   it("should handle cases where current price is more than ath", () => {
     const ath = 100;
     const currentPrice = 200;
@@ -38,5 +55,13 @@ describe("calculatePercentageDrop", () => {
     const toAth = calcToAth(ath, currentPrice);
 
     expect(toAth).toBe(expectedToAth);
+  });
+  it("should call console.error when currentPrice more than ATH", () => {
+    const ath = 100;
+    const currentPrice = 200;
+
+    calcToAth(ath, currentPrice);
+
+    expect(console.error).toHaveBeenCalled();
   });
 });
